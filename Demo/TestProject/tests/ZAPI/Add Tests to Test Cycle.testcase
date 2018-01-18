@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="52">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="1" title="Web Connect: WebServiceConnection">
+      <tags/>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">RestNew</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="2" title="Web Request (HTTP/REST): ⇒RestResponse">
+      <tags/>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="targetValue">
+          <value class="restTarget" uri="rest:untyped?method=POST&amp;bodyStyle=JSON"/>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">RestResponse</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="statusResultName">
+          <value class="value" valueClass="string">RestResponseStatus</value>
+        </argument>
+        <argument id="restResourceUrl">
+          <value class="value" valueClass="string">/public/rest/api/1.0/executions/add/cycle/0001515587662213-242ac112-0001</value>
+        </argument>
+        <argument id="restRequestHeader">
+          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6Ijg4ODYyZTg3MDMyMDc1OGJmOGMzOGUxMzIxN2FhNTJkYmRjMWMxNjI3YjM5OWM1ZTkyMDIwYjkwY2NkZTg2ZDgiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE1NjE1NDA2LCJpYXQiOjE1MTU2MTE4MDZ9.DkYSiA-2YtkSgCqClMo_-b7Fq0aAj6Hhgr8aCKe4m4Y\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+        <argument id="restBody">
+          <value class="value" valueClass="string">{\n"issues": [\n"BOT-1"\n],\n"projectId": "10000",\n"versionId": 10000,\n"issueId": 10001,\n"method": "1"\n}</value>
+        </argument>
+        <argument id="restAttachments">
+          <value class="valueList" mutable="Mutable"/>
+        </argument>
+      </arguments>
+      <generatedParameters>
+        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="body" name="restBody" title="Body">
+          <type>
+            <textType>
+              <constraints>
+                <valueConstraint name="mimeType">application/json</valueConstraint>
+              </constraints>
+            </textType>
+          </type>
+        </apiParam>
+        <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+          <childParams>
+            <apiParam name="name" title="Attachment Name"/>
+            <apiParam name="fileName" title="File Name"/>
+            <apiParam name="contentType" title="Content Type">
+              <type>
+                <choiceType>
+                  <constraints>
+                    <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                    <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                  </constraints>
+                </choiceType>
+              </type>
+            </apiParam>
+            <apiParam name="data" title="Data">
+              <type>
+                <urlType/>
+              </type>
+            </apiParam>
+            <apiParam name="base64Encode" title="Encode As Base64">
+              <type>
+                <booleanType/>
+              </type>
+            </apiParam>
+          </childParams>
+        </compoundApiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+</testCase>

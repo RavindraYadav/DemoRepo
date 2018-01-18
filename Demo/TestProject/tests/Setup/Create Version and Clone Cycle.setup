@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="11">
+  <summary/>
+  <steps>
+    <caseCall testCaseId="f9f6f8e0-2b7c-4d85-8b20-c3b6278ec395" testCasePath="tests/ZAPI/Create Project Version.testcase" testItemId="1">
+      <arguments>
+        <argument id="Version">
+          <value class="value" valueClass="string">1.9.0.9</value>
+        </argument>
+        <argument id="VersionDescription">
+          <value class="value" valueClass="string">Jan test2 Sprint</value>
+        </argument>
+        <argument id="ProjectCode">
+          <value class="value" valueClass="string">BOT</value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="f2de33f1-ca40-4eca-9060-0869b1263bdf" testCasePath="tests/ZAPI/Clone a Test Cycle.testcase" testItemId="2">
+      <arguments>
+        <argument id="cloneCycleId">
+          <value class="value" valueClass="string">0001516186330582-242ac112-0001</value>
+        </argument>
+        <argument id="NewCycleName">
+          <value class="value" valueClass="string">Test Account Object</value>
+        </argument>
+        <argument id="ProjectId">
+          <value class="variable">
+            <path element="GetVersionDetail"/>
+            <path element="projectId"/>
+          </value>
+        </argument>
+        <argument id="VersionId">
+          <value class="variable">
+            <path element="GetVersionDetail"/>
+            <path element="id"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="3" title="Set Values: v.CycleId">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">v.VesionId</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="GetVersionDetail"/>
+                  <path element="id"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">v.ProjectId</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="GetVersionDetail"/>
+                  <path element="projectId"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">v.CycleId</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="GetNewCycleDetails"/>
+                  <path element="id"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="6" title="Write: {v}=&gt;templates/ZephyrData.xlsx">
+      <arguments>
+        <argument id="data">
+          <value class="variable">
+            <path element="v"/>
+          </value>
+        </argument>
+        <argument id="dataUrl">
+          <value class="excelTarget" created="0" sheetWriteMode="Overwrite" updated="0">
+            <workbookPath class="value" valueClass="string">templates/ZephyrData.xlsx</workbookPath>
+            <worksheetName class="value" valueClass="string">Sheet1</worksheetName>
+          </value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">templates/ZephyrData.xlsx</value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+</testCase>

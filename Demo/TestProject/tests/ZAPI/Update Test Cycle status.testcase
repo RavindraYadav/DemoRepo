@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="82">
+  <summary/>
+  <steps>
+    <caseCall testCaseId="d1ee6bd1-c8ca-4877-8f5b-c3387ca0f719" testCasePath="tests/ZAPI/Generate JWT Token.testcase" testItemId="1">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="AccessKey">
+          <value class="value" valueClass="string">ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+        <argument id="SecretKey">
+          <value class="value" valueClass="string">Ei02EWRti72C08z7LP2lOGnwAPtYao8mYMzaMJpTiaU</value>
+        </argument>
+        <argument id="UserName">
+          <value class="value" valueClass="string">admin</value>
+        </argument>
+        <argument id="ResourceURL">
+          <value class="value" valueClass="string">/public/rest/api/1.0/cycles/search?versionId=10000&amp;projectId=10000</value>
+        </argument>
+        <argument id="Method">
+          <value class="value" valueClass="string">GET</value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="Token">
+          <name class="value" valueClass="string">Token</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="2" title="Web Connect: WebServiceConnection">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">RestNew</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="3" title="Web Request (HTTP/REST): ⇒RestResponse">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="targetValue">
+          <value class="restTarget" uri="rest:untyped?method=GET&amp;bodyStyle=JSON"/>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">RestResponse</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="statusResultName">
+          <value class="value" valueClass="string">RestResponseStatus</value>
+        </argument>
+        <argument id="restResourceUrl">
+          <value class="value" valueClass="string">/public/rest/api/1.0/cycles/search?versionId=10000&amp;projectId=10000</value>
+        </argument>
+        <argument id="restRequestHeader">
+          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6IjE2NGU5MjI2OGRhNGU5NjI2NTM3ZjFmNTcyM2ZmYTJjNGExOGQ0YjVjYjQ2N2I4Y2ZlOTE1NGMzOTczMTEwMmEiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE1NjY4MDMyLCJpYXQiOjE1MTU2NjQ0MzJ9.ARdWCD4JkD5rbXITf34isTEGOlUPGMx0Y0WLneBk2yU\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+      </arguments>
+      <generatedParameters>
+        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <caseCall testCaseId="d1ee6bd1-c8ca-4877-8f5b-c3387ca0f719" testCasePath="tests/ZAPI/Generate JWT Token.testcase" testItemId="4">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="AccessKey">
+          <value class="value" valueClass="string">ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+        <argument id="SecretKey">
+          <value class="value" valueClass="string">Ei02EWRti72C08z7LP2lOGnwAPtYao8mYMzaMJpTiaU</value>
+        </argument>
+        <argument id="UserName">
+          <value class="value" valueClass="string">admin</value>
+        </argument>
+        <argument id="ResourceURL">
+          <value class="value" valueClass="string">/public/rest/api/1.0/executions/search/cycle/0001515587662213-242ac112-0001?versionId=10000&amp;projectId=10000</value>
+        </argument>
+        <argument id="Method">
+          <value class="value" valueClass="string">GET</value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="Token">
+          <name class="value" valueClass="string">Token</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="5" title="Web Request (HTTP/REST): ⇒RestResponse">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="targetValue">
+          <value class="restTarget" uri="rest:untyped?method=GET&amp;bodyStyle=JSON"/>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">RestResponse</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="statusResultName">
+          <value class="value" valueClass="string">RestResponseStatus</value>
+        </argument>
+        <argument id="restResourceUrl">
+          <value class="value" valueClass="string">/public/rest/api/1.0/executions/search/cycle/0001515587662213-242ac112-0001?versionId=10000&amp;projectId=10000</value>
+        </argument>
+        <argument id="restRequestHeader">
+          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6ImNkNzVmMjJmY2E4NmNlZTgzOTU0MjVkNmZkMDNiYzRkYTVlNWQ5NjE2ZjM2NjFhMWRhMzU1MzU3YTVjZjhkNDQiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE1NjcyOTk3LCJpYXQiOjE1MTU2NjkzOTd9.GE8Vb0y8hLSpxkh77xWncCM01HqT8fZ51kitJ5CAeLM\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+        <argument id="restBody">
+          <value class="value" valueClass="string">{"maxRecords":20,\n"offset":0,\n"zql":"field = 'value'"\n}</value>
+        </argument>
+        <argument id="restAttachments">
+          <value class="valueList" mutable="Mutable"/>
+        </argument>
+      </arguments>
+      <generatedParameters>
+        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+</testCase>

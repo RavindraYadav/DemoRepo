@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase>
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: Demo (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="2" title="Create Object: Account=&gt;AccountId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">Account</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">AccountId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">Demo</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Global</value>
+        </argument>
+        <argument id="Name">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">Provar_Account_</value>
+              <funcCall id="UniqueId">
+                <argument id="length">
+                  <value class="value" valueClass="decimal">4</value>
+                </argument>
+              </funcCall>
+            </parts>
+          </value>
+        </argument>
+        <argument id="Type">
+          <value class="value" valueClass="string">Prospect</value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">Demo</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">Account</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=Account&amp;field=Name" name="Name" title="Name"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=Account&amp;field=Type" name="Type" title="Type"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.Finally" name="Finally" testItemId="3" title="Finally: Update ZAPI">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Update ZAPI</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="4">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="6" title="Read ZAPI data">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Read ZAPI data</value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="ExcelData" variableScope="Test">
+                  <cacheToken>/Users/ravindrayadav/Documents/WorkSpaces/Demo/TestProject/templates/ZephyrData.xlsx;1516264716000</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="VesionId"/>
+                    <apiParam name="ProjectId"/>
+                    <apiParam name="CycleId"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" created="0" namesLocation="FirstRowOfRange" updated="0" whereComparison="EqualTo">
+                    <workbookPath class="value" valueClass="string">templates/ZephyrData.xlsx</workbookPath>
+                    <worksheetName class="value" valueClass="string">Sheet1</worksheetName>
+                    <valuesRange class="value" valueClass="string"/>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="hidden" testItemId="7"/>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="cfde6494-3f9b-4d37-b0a8-bb0d6ac7f349" testCasePath="tests/ZAPI/Get the Execution List By Cycle Id.testcase" testItemId="5">
+              <arguments>
+                <argument id="CycleId">
+                  <value class="variable">
+                    <path element="ExcelData"/>
+                    <path element="CycleId"/>
+                  </value>
+                </argument>
+                <argument id="VersionId">
+                  <value class="variable">
+                    <path element="ExcelData"/>
+                    <path element="VesionId"/>
+                  </value>
+                </argument>
+                <argument id="ProjectId">
+                  <value class="variable">
+                    <path element="ExcelData"/>
+                    <path element="ProjectId"/>
+                  </value>
+                </argument>
+                <argument id="TCId">
+                  <value class="value" valueClass="string">BOT-1</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="GetExecutionList">
+                  <name class="value" valueClass="string">GetExecutionList</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

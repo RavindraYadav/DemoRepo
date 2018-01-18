@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="65">
+  <summary/>
+  <steps>
+    <caseCall testCaseId="d1ee6bd1-c8ca-4877-8f5b-c3387ca0f719" testCasePath="tests/ZAPI/Generate JWT Token.testcase" testItemId="1">
+      <arguments>
+        <argument id="AccessKey">
+          <value class="value" valueClass="string">ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+        <argument id="SecretKey">
+          <value class="value" valueClass="string">Ei02EWRti72C08z7LP2lOGnwAPtYao8mYMzaMJpTiaU</value>
+        </argument>
+        <argument id="UserName">
+          <value class="value" valueClass="string">admin</value>
+        </argument>
+        <argument id="ResourceURL">
+          <value class="value" valueClass="string">/public/rest/api/1.0/executions?issueId=10000&amp;projectId=10000</value>
+        </argument>
+        <argument id="Method">
+          <value class="value" valueClass="string">GET</value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="Token">
+          <name class="value" valueClass="string">Token</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="2" title="Web Connect: WebServiceConnection">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">RestNew</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="3" title="Web Request (HTTP/REST): ⇒RestResponse">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="targetValue">
+          <value class="restTarget" uri="rest:untyped?method=GET&amp;bodyStyle=JSON"/>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">RestResponse</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="statusResultName">
+          <value class="value" valueClass="string">RestResponseStatus</value>
+        </argument>
+        <argument id="restResourceUrl">
+          <value class="value" valueClass="string">/public/rest/api/1.0/executions?issueId=10000&amp;projectId=10000</value>
+        </argument>
+        <argument id="restRequestHeader">
+          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6IjBkYzcwYTkzYmJmZWEwMzZjNzA2MjA3ZjNiNzQ4ZTY3NDZiZjc0OWU1MTM2NzU4MjMzMGQwY2ZkNWJjOTJjMTciLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE1NjY2MDM2LCJpYXQiOjE1MTU2NjI0MzZ9.ZKQQNVcry4i4GjdTy_1jCB9XJCfx3HsySu08GeQaxd0\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+      </arguments>
+      <generatedParameters>
+        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="5" title="For Each: {RestResponse.searchObjectList}=&gt;var">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="RestResponse"/>
+            <path element="searchObjectList"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">var</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="6">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="4" title="Set Values: ">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">ExecutionId</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="var"/>
+                          <path element="execution"/>
+                          <path element="id"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath"/>
+                      <namedValue name="value"/>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>
