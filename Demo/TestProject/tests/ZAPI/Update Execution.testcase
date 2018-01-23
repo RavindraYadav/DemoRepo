@@ -1,7 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testCase id="62">
+<testCase failureBehaviour="Continue" id="2" registryId="5d3c7b49-d614-4abe-9db1-dc7334529eaf" visibility="Internal">
   <summary/>
   <steps>
+    <caseCall testCaseId="d1ee6bd1-c8ca-4877-8f5b-c3387ca0f719" testCasePath="tests/ZAPI/Generate JWT Token.testcase" testItemId="4">
+      <arguments>
+        <argument id="AccessKey">
+          <value class="value" valueClass="string">ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+        </argument>
+        <argument id="SecretKey">
+          <value class="value" valueClass="string">Ei02EWRti72C08z7LP2lOGnwAPtYao8mYMzaMJpTiaU</value>
+        </argument>
+        <argument id="UserName">
+          <value class="value" valueClass="string">admin</value>
+        </argument>
+        <argument id="ResourceURL">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">/public/rest/api/1.0/execution/</value>
+              <variable>
+                <path element="ExecutionId"/>
+              </variable>
+            </parts>
+          </value>
+        </argument>
+        <argument id="Method">
+          <value class="value" valueClass="string">PUT</value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="Token">
+          <name class="value" valueClass="string">Token</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="8" title="Set Values: a">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">a</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="compound">
+                  <parts>
+                    <value valueClass="string">Authorization:</value>
+                    <variable>
+                      <path element="Token"/>
+                    </variable>
+                    <value valueClass="string">zapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+                  </parts>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <caseCall testCaseId="0694181c-da4e-47e7-8e7b-1540a45c4320" testCasePath="tests/Callable/Sceenario1Callable/Get Test Status Outcome for ZAPI.testcase" testItemId="6">
+      <arguments>
+        <argument id="TestOutcome">
+          <value class="variable">
+            <path element="TestCaseStatus"/>
+          </value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="TestStatusCode">
+          <name class="value" valueClass="string">TestStatusCode</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
     <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="1" title="Web Connect: WebServiceConnection">
       <arguments>
         <argument id="connectionName">
@@ -14,87 +86,6 @@
           <value class="value" valueClass="string">Test</value>
         </argument>
       </arguments>
-    </apiCall>
-    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="3" title="Web Request (HTTP/REST): ⇒RestResponse">
-      <tags>
-        <string>disabled</string>
-      </tags>
-      <arguments>
-        <argument id="connectionName">
-          <value class="value" valueClass="string">WebServiceConnection</value>
-        </argument>
-        <argument id="targetValue">
-          <value class="restTarget" uri="rest:untyped?method=PUT&amp;bodyStyle=JSON"/>
-        </argument>
-        <argument id="resultName">
-          <value class="value" valueClass="string">RestResponse</value>
-        </argument>
-        <argument id="resultScope">
-          <value class="value" valueClass="string">Test</value>
-        </argument>
-        <argument id="statusResultName">
-          <value class="value" valueClass="string">RestResponseStatus</value>
-        </argument>
-        <argument id="restResourceUrl">
-          <value class="value" valueClass="string">/public/rest/api/1.0/execution/0001515612120270-242ac112-0001</value>
-        </argument>
-        <argument id="restRequestHeader">
-          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6IjAxNTk5MjQxMmZlNjY4ZDEyMzM5MTVmNTNjOTdlYWM2YjE2NDEzNTMzOTQyZWI3OWYxN2Q2OGZiMTRmZDIxYTYiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE1NjE2NzI4LCJpYXQiOjE1MTU2MTMxMjh9.aKHj3i9NjUEylJVdJf_19GuHLVXT6hdT6qVIvwiBGCE\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
-        </argument>
-        <argument id="restBody">
-          <value class="value" valueClass="string">{"status":{"id":1},"id":"0001515612120270-242ac112-0001","projectId":10000,"issueId":10000,"cycleId":"0001515604390889-242ac112-0001","versionId":10000,"comment":"Comment for execution","assigneeType":"currentUser/assignee","assignee":"userKey"}</value>
-        </argument>
-        <argument id="restAttachments">
-          <value class="valueList" mutable="Mutable"/>
-        </argument>
-      </arguments>
-      <generatedParameters>
-        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
-          <type>
-            <textType/>
-          </type>
-        </apiParam>
-        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
-          <type>
-            <textType/>
-          </type>
-        </apiParam>
-        <apiParam group="body" name="restBody" title="Body">
-          <type>
-            <textType>
-              <constraints>
-                <valueConstraint name="mimeType">application/json</valueConstraint>
-              </constraints>
-            </textType>
-          </type>
-        </apiParam>
-        <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
-          <childParams>
-            <apiParam name="name" title="Attachment Name"/>
-            <apiParam name="fileName" title="File Name"/>
-            <apiParam name="contentType" title="Content Type">
-              <type>
-                <choiceType>
-                  <constraints>
-                    <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
-                    <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
-                  </constraints>
-                </choiceType>
-              </type>
-            </apiParam>
-            <apiParam name="data" title="Data">
-              <type>
-                <urlType/>
-              </type>
-            </apiParam>
-            <apiParam name="base64Encode" title="Encode As Base64">
-              <type>
-                <booleanType/>
-              </type>
-            </apiParam>
-          </childParams>
-        </compoundApiParam>
-      </generatedParameters>
     </apiCall>
     <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="2" title="Web Request (HTTP/REST): ⇒RestResponse">
       <arguments>
@@ -114,13 +105,50 @@
           <value class="value" valueClass="string">RestResponseStatus</value>
         </argument>
         <argument id="restResourceUrl">
-          <value class="value" valueClass="string">/public/rest/api/1.0/execution/0001515612120441-242ac112-0001</value>
+          <value class="compound">
+            <parts>
+              <value valueClass="string">/public/rest/api/1.0/execution/</value>
+              <variable>
+                <path element="ExecutionId"/>
+              </variable>
+            </parts>
+          </value>
         </argument>
         <argument id="restRequestHeader">
-          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6IjAxNTk5MjQxMmZlNjY4ZDEyMzM5MTVmNTNjOTdlYWM2YjE2NDEzNTMzOTQyZWI3OWYxN2Q2OGZiMTRmZDIxYTYiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE1NjE2ODA3LCJpYXQiOjE1MTU2MTMyMDd9.eAFFr5sP0VoM2Y5wl8Gj7bNAjenTp4F7veihastAbjE\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+          <value class="variable">
+            <path element="a"/>
+          </value>
         </argument>
         <argument id="restBody">
-          <value class="value" valueClass="string">{"status":{"id":2},"id":"0001515612120441-242ac112-0001","projectId":10000,"issueId":10001,"cycleId":"0001515604390889-242ac112-0001","versionId":10000,"comment":"Comment for execution","assigneeType":"currentUser/assignee","assignee":"userKey"}</value>
+          <value class="compound">
+            <parts>
+              <value valueClass="string">{"status":{"id":</value>
+              <variable>
+                <path element="TestStatusCode"/>
+              </variable>
+              <value valueClass="string">},"id":"</value>
+              <variable>
+                <path element="ExecutionId"/>
+              </variable>
+              <value valueClass="string">","cycleId":"</value>
+              <variable>
+                <path element="cycleId"/>
+              </variable>
+              <value valueClass="string">","versionId":</value>
+              <variable>
+                <path element="versionId"/>
+              </variable>
+              <value valueClass="string">,"issueId":</value>
+              <variable>
+                <path element="issueId"/>
+              </variable>
+              <value valueClass="string">,"projectId":</value>
+              <variable>
+                <path element="ProjectId"/>
+              </variable>
+              <value valueClass="string">,"comment":"Comment for execution","assigneeType":"currentUser/assignee","assignee":"userKey"}</value>
+            </parts>
+          </value>
         </argument>
         <argument id="restAttachments">
           <value class="valueList" mutable="Mutable"/>
@@ -175,4 +203,86 @@
       </generatedParameters>
     </apiCall>
   </steps>
+  <params>
+    <param name="ExecutionId" title="ExecutionId">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="TestCaseStatus" title="TestCaseStatus">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="issueId" title="issueId">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="versionId" title="versionId">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ProjectId" title="ProjectId">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="cycleId" title="cycleId">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="ExecutionId"/>
+    <argument id="issueId"/>
+    <argument id="versionId"/>
+    <argument id="ProjectId"/>
+    <argument id="cycleId"/>
+    <argument id="TestCaseStatus"/>
+  </args>
 </testCase>

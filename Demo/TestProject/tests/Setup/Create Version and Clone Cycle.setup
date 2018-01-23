@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<testCase failureBehaviour="Continue" id="11">
+<testCase failureBehaviour="Continue" id="3">
   <summary/>
   <steps>
     <caseCall testCaseId="f9f6f8e0-2b7c-4d85-8b20-c3b6278ec395" testCasePath="tests/ZAPI/Create Project Version.testcase" testItemId="1">
+      <tags/>
       <arguments>
         <argument id="Version">
-          <value class="value" valueClass="string">1.9.0.9</value>
+          <value class="value" valueClass="string">1.10.0.9</value>
         </argument>
         <argument id="VersionDescription">
-          <value class="value" valueClass="string">Jan test2 Sprint</value>
+          <value class="value" valueClass="string">ninth Sprint</value>
         </argument>
         <argument id="ProjectCode">
           <value class="value" valueClass="string">BOT</value>
@@ -16,12 +17,13 @@
       </arguments>
     </caseCall>
     <caseCall testCaseId="f2de33f1-ca40-4eca-9060-0869b1263bdf" testCasePath="tests/ZAPI/Clone a Test Cycle.testcase" testItemId="2">
+      <tags/>
       <arguments>
         <argument id="cloneCycleId">
           <value class="value" valueClass="string">0001516186330582-242ac112-0001</value>
         </argument>
         <argument id="NewCycleName">
-          <value class="value" valueClass="string">Test Account Object</value>
+          <value class="value" valueClass="string">Test Account Object v10.9</value>
         </argument>
         <argument id="ProjectId">
           <value class="variable">
@@ -38,12 +40,13 @@
       </arguments>
     </caseCall>
     <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="3" title="Set Values: v.CycleId">
+      <tags/>
       <arguments>
         <argument id="values">
           <value class="valueList" mutable="Mutable">
             <namedValues mutable="Mutable">
               <namedValue name="valuePath">
-                <value class="value" valueClass="string">v.VesionId</value>
+                <value class="value" valueClass="string">v.VersionId</value>
               </namedValue>
               <namedValue name="value">
                 <value class="variable">
@@ -88,6 +91,7 @@
       </arguments>
     </apiCall>
     <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="6" title="Write: {v}=&gt;templates/ZephyrData.xlsx">
+      <tags/>
       <arguments>
         <argument id="data">
           <value class="variable">
@@ -95,7 +99,7 @@
           </value>
         </argument>
         <argument id="dataUrl">
-          <value class="excelTarget" created="0" sheetWriteMode="Overwrite" updated="0">
+          <value class="excelTarget" sheetWriteMode="Overwrite">
             <workbookPath class="value" valueClass="string">templates/ZephyrData.xlsx</workbookPath>
             <worksheetName class="value" valueClass="string">Sheet1</worksheetName>
           </value>

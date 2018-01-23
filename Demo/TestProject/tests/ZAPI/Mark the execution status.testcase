@@ -22,10 +22,17 @@
             <path element="projectId"/>
           </value>
         </argument>
+        <argument id="TCId"/>
       </arguments>
       <outputArguments>
         <outputArgument id="GetExecutionList">
           <name class="value" valueClass="string">GetExecutionList</name>
+        </outputArgument>
+        <outputArgument id="ExecutionId">
+          <name class="value" valueClass="string">ExecutionId</name>
+        </outputArgument>
+        <outputArgument id="IssueId">
+          <name class="value" valueClass="string">IssueId</name>
         </outputArgument>
       </outputArguments>
     </caseCall>

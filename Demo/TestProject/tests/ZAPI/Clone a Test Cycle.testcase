@@ -33,7 +33,7 @@
         </outputArgument>
       </outputArguments>
     </caseCall>
-    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="1" title="Web Connect: WebServiceConnection">
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="7" title="Web Connect: WebServiceConnection">
       <tags/>
       <arguments>
         <argument id="connectionName">
@@ -58,10 +58,11 @@
               <namedValue name="value">
                 <value class="compound">
                   <parts>
-                    <value valueClass="string">/public/rest/api/1.0/cycle?clonedCycleId=</value>
+                    <value valueClass="string">Authorization:</value>
                     <variable>
-                      <path element="cloneCycleId"/>
+                      <path element="Token"/>
                     </variable>
+                    <value valueClass="string">zapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
                   </parts>
                 </value>
               </namedValue>
@@ -73,7 +74,7 @@
         </argument>
       </arguments>
     </apiCall>
-    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="2" title="Web Request (HTTP/REST): ⇒GetNewCycleDetails">
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="6" title="Web Request (HTTP/REST): ⇒GetNewCycleDetails">
       <tags/>
       <arguments>
         <argument id="connectionName">
@@ -102,7 +103,114 @@
           </value>
         </argument>
         <argument id="restRequestHeader">
-          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6IjM3NmVmNTdmM2NiNTBkZDRjNDZjNDk2MTljZmRhNDM5MjRkODYyOGMwZGMxZTU1YzNkYTI4MTY3NTYyMGMyMjYiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE2MjY3Mzk3LCJpYXQiOjE1MTYyNjM3OTd9.vX9jeB7--Mp6xeHng3gZRagVhzkHFqNpPC6uEOfUm3s\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+          <value class="variable">
+            <path element="a"/>
+          </value>
+        </argument>
+        <argument id="restBody">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">{"name":"</value>
+              <variable>
+                <path element="NewCycleName"/>
+              </variable>
+              <value valueClass="string">","projectId":</value>
+              <variable>
+                <path element="ProjectId"/>
+              </variable>
+              <value valueClass="string">,"versionId":</value>
+              <variable>
+                <path element="VersionId"/>
+              </variable>
+              <value valueClass="string">}</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="restAttachments">
+          <value class="valueList" mutable="Mutable"/>
+        </argument>
+        <argument id="contentType"/>
+      </arguments>
+      <generatedParameters>
+        <apiParam group="request" internal="true" name="restResourceUrl" title="Resource URL">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <apiParam group="header" internal="true" name="restRequestHeader" title="Request Header">
+          <type>
+            <textType/>
+          </type>
+        </apiParam>
+        <compoundApiParam group="attachments" list="true" name="restAttachments" title="Attachment">
+          <childParams>
+            <apiParam name="name" title="Attachment Name"/>
+            <apiParam name="fileName" title="File Name"/>
+            <apiParam name="contentType" title="Content Type">
+              <type>
+                <choiceType>
+                  <constraints>
+                    <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                    <valueConstraint name="valuesSourceDependencies">com.provar.core.model.base.api.MimeContentType</valueConstraint>
+                  </constraints>
+                </choiceType>
+              </type>
+            </apiParam>
+            <apiParam name="data" title="Data">
+              <type>
+                <urlType/>
+              </type>
+            </apiParam>
+            <apiParam name="base64Encode" title="Encode As Base64">
+              <type>
+                <booleanType/>
+              </type>
+            </apiParam>
+          </childParams>
+        </compoundApiParam>
+        <apiParam group="body" name="restBody" title="Body">
+          <type>
+            <textType>
+              <constraints>
+                <valueConstraint name="mimeType">application/json</valueConstraint>
+              </constraints>
+            </textType>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.RestRequest" name="RestRequest" testItemId="2" title="Web Request (HTTP/REST): ⇒GetNewCycleDetails">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">WebServiceConnection</value>
+        </argument>
+        <argument id="targetValue">
+          <value class="restTarget" uri="rest:untyped?method=POST&amp;bodyStyle=JSON"/>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">GetNewCycleDetails</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Global</value>
+        </argument>
+        <argument id="statusResultName">
+          <value class="value" valueClass="string">RestResponseStatus</value>
+        </argument>
+        <argument id="restResourceUrl">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">/public/rest/api/1.0/cycle?clonedCycleId=</value>
+              <variable>
+                <path element="cloneCycleId"/>
+              </variable>
+            </parts>
+          </value>
+        </argument>
+        <argument id="restRequestHeader">
+          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6IjM3NmVmNTdmM2NiNTBkZDRjNDZjNDk2MTljZmRhNDM5MjRkODYyOGMwZGMxZTU1YzNkYTI4MTY3NTYyMGMyMjYiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE2MzQ3MDA4LCJpYXQiOjE1MTYzNDM0MDh9.ql39pjCsWIbn4o1qXidGqZ8lLgPxIGZrflo0C_-fTq8\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
         </argument>
         <argument id="restBody">
           <value class="compound">

@@ -15,7 +15,22 @@
           <value class="value" valueClass="string">admin</value>
         </argument>
         <argument id="ResourceURL">
-          <value class="value" valueClass="string">/public/rest/api/1.0/executions/search/cycle/0001515587662213-242ac112-0001?versionId=10000&amp;projectId=10000</value>
+          <value class="compound">
+            <parts>
+              <value valueClass="string">/public/rest/api/1.0/executions/search/cycle/</value>
+              <variable>
+                <path element="CycleId"/>
+              </variable>
+              <value valueClass="string">?versionId=</value>
+              <variable>
+                <path element="VersionId"/>
+              </variable>
+              <value valueClass="string">&amp;projectId=</value>
+              <variable>
+                <path element="ProjectId"/>
+              </variable>
+            </parts>
+          </value>
         </argument>
         <argument id="Method">
           <value class="value" valueClass="string">GET</value>
@@ -27,6 +42,33 @@
         </outputArgument>
       </outputArguments>
     </caseCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="8" title="Set Values: a">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">a</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="compound">
+                  <parts>
+                    <value valueClass="string">Authorization:</value>
+                    <variable>
+                      <path element="Token"/>
+                    </variable>
+                    <value valueClass="string">zapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+                  </parts>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
     <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.WebConnect" name="WebConnect" testItemId="2" title="Web Connect: WebServiceConnection">
       <arguments>
         <argument id="connectionName">
@@ -76,7 +118,9 @@
           </value>
         </argument>
         <argument id="restRequestHeader">
-          <value class="value" valueClass="string">Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInFzaCI6ImNkNzVmMjJmY2E4NmNlZTgzOTU0MjVkNmZkMDNiYzRkYTVlNWQ5NjE2ZjM2NjFhMWRhMzU1MzU3YTVjZjhkNDQiLCJpc3MiOiJabVF5WVdaaE5XVXRZbUU1TkMwek5EWXlMVGxpTTJRdE1ETXhNVGd4TldZNU5XWTVJR0ZrYldsdUlHRmtiV2x1IiwiZXhwIjoxNTE2MjAyNDQxLCJpYXQiOjE1MTYxOTg4NDF9.2dAuR74QobF3GElaKWmCB7VEWwgPu41kIqR9TXF3JcE\nzapiAccessKey:ZmQyYWZhNWUtYmE5NC0zNDYyLTliM2QtMDMxMTgxNWY5NWY5IGFkbWluIGFkbWlu</value>
+          <value class="variable">
+            <path element="a"/>
+          </value>
         </argument>
       </arguments>
       <generatedParameters>
@@ -109,7 +153,9 @@
                         <lhs class="variable">
                           <path element="issueKey"/>
                         </lhs>
-                        <rhs class="value" valueClass="string">BOT-1</rhs>
+                        <rhs class="variable" topLevel="true">
+                          <path element="TCId"/>
+                        </rhs>
                       </condition>
                     </filter>
                   </path>
@@ -123,7 +169,7 @@
         </argument>
       </arguments>
     </apiCall>
-    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="6" title="Set Values: ExecutionId">
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="6" title="Set Values: IssueId">
       <arguments>
         <argument id="values">
           <value class="valueList" mutable="Mutable">
@@ -142,17 +188,17 @@
                 <value class="value" valueClass="string">Test</value>
               </namedValue>
             </namedValues>
-          </value>
-        </argument>
-      </arguments>
-    </apiCall>
-    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="5" title="Set Values: ">
-      <arguments>
-        <argument id="values">
-          <value class="valueList" mutable="Mutable">
             <namedValues mutable="Mutable">
-              <namedValue name="valuePath"/>
-              <namedValue name="value"/>
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">IssueId</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="ExecutionList"/>
+                  <path element="execution"/>
+                  <path element="issueId"/>
+                </value>
+              </namedValue>
               <namedValue name="valueScope">
                 <value class="value" valueClass="string">Test</value>
               </namedValue>
@@ -228,6 +274,36 @@
         <path element="GetExecutionList"/>
       </sourceValue>
     </param>
+    <param name="ExecutionId" title="ExecutionId">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="ExecutionId"/>
+      </sourceValue>
+    </param>
+    <param name="IssueId" title="IssueId">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="IssueId"/>
+      </sourceValue>
+    </param>
   </outputParams>
   <args>
     <argument id="CycleId"/>
@@ -238,6 +314,12 @@
   <outputArgs>
     <outputArgument id="GetExecutionList">
       <name class="value" valueClass="string">GetExecutionList</name>
+    </outputArgument>
+    <outputArgument id="ExecutionId">
+      <name class="value" valueClass="string">ExecutionId</name>
+    </outputArgument>
+    <outputArgument id="IssueId">
+      <name class="value" valueClass="string">IssueId</name>
     </outputArgument>
   </outputArgs>
 </testCase>
