@@ -3,12 +3,5 @@
   <lockManagers>
     <mananger guid="4025ee8d-4217-4958-8606-6e0fa6adb8c8" ip="localhost" name="Provar" port="49297"/>
   </lockManagers>
-  <resourceMap>
-    <entry>
-      <key valueClass="string">testproject/validation</key>
-      <value valueClass="list">
-        <lease granted="1516775957974" id="1370" lockManagerId="4025ee8d-4217-4958-8606-6e0fa6adb8c8" requestId="1338" requested="1516775957974" threadId="Worker-5" totalWork="25"/>
-      </value>
-    </entry>
-  </resourceMap>
+  <resourceMap/>
 </lockManagerState>
